@@ -1,22 +1,34 @@
 import Head from "next/head";
 import Link from "next/link";
-
-const Layout = ({ children, title = "Crypto Tracker" }) => {
+export default function Layout({
+  children,
+  title = "Crypto Tracker · on the pulse",
+}) {
   return (
-    <div className="Layout">
+    <div className="layout">
       <Head>
         <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="A curious little window into crypto markets. Browse coins, explore details, and build a watchlist."
+        />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="theme-color" content="#111a22" />
       </Head>
-      <header className="header">
-        <Link href="/" passHref>
-          <a className="icon">💎🤲</a>
+      <header className="nav">
+        <Link href="/" className="brand">
+          <span className="brand-mark" aria-hidden="true">
+            ◇
+          </span>{" "}
+          crypto<span className="brand-light">tracker</span>
         </Link>
-        <h1>Crypto Tracker</h1>
+        <span className="nav-note">BY JOSE SUSTAITA</span>
       </header>
       <main>{children}</main>
+      <footer className="footer">
+        <span>Stay curious. Keep perspective.</span>
+        <span>USD · CoinGecko in live mode</span>
+      </footer>
     </div>
   );
-};
-
-export default Layout;
+}

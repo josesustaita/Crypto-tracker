@@ -1,23 +1,16 @@
 import Coins from "../Coins";
-
-export default function CoinList({ filteredCoins }) {
+export default function CoinList({ filteredCoins, saved = [], onToggle }) {
   return (
-    <>
-      {filteredCoins.map((coin) => {
-        return (
-          <Coins
-            key={coin.id}
-            name={coin.name}
-            id={coin.id}
-            price={coin.current_price}
-            symbol={coin.symbol}
-            marketcap={coin.market_cap}
-            volume={coin.total_volume}
-            image={coin.image}
-            priceChange={coin.price_change_percentage_24h}
-          />
-        );
-      })}
-    </>
+    <ul className="coin-list">
+      {filteredCoins.map((coin, index) => (
+        <Coins
+          key={coin.id}
+          coin={coin}
+          index={index}
+          saved={saved.includes(coin.id)}
+          onToggle={onToggle}
+        />
+      ))}
+    </ul>
   );
 }

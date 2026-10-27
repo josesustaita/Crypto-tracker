@@ -1,51 +1,50 @@
-import styles from "./Coins.module.css";
 import Link from "next/link";
-
-function Coins({
-  name,
-  price,
-  symbol,
-  marketcap,
-  volume,
-  image,
-  priceChange,
-  id,
-}) {
+const money = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 2,
+});
+const compact = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  notation: "compact",
+  maximumFractionDigits: 1,
+});
+export default function Coins({ coin, index, saved, onToggle }) {
+  const change = coin.price_change_percentage_24h;
   return (
-    <Link href="/coin/[id]" as={`/coin/${id}`}>
-      <a>
-        <div className={styles.coin_container}>
-          <div className={styles.coin_row}>
-            <div className={styles.coin}>
-              <img src={image} alt={name} className={styles.coin_img} />
-              <h1 className={styles.coin_h1}>{name}</h1>
-              <p className={(styles.coin_symbol, styles.desktop)}>{symbol}</p>
-            </div>
-            <div className={styles.coin_data}>
-              <p className={styles.coin_price}>${price}</p>
-              <p className={(styles.coin_volume, styles.desktop)}>
-                ${volume.toLocaleString()}
-              </p>
-              {priceChange < 0 ? (
-                <p className={(styles.coin_percent, styles.red)}>
-                  {" "}
-                  {priceChange.toFixed(2)}%
-                </p>
-              ) : (
-                <p className={(styles.coin_percent, styles.green)}>
-                  {" "}
-                  {priceChange.toFixed(2)}%
-                </p>
-              )}{" "}
-              <p className={(styles.coin_marketcap, styles.desktop)}>
-                Mkt Cap:${marketcap.toLocaleString()}
-              </p>
-            </div>
-          </div>
-        </div>
-      </a>
-    </Link>
+    <li
+      className="coin-row"
+      style={{ "--delay": `${Math.min(index, 8) * 35}ms` }}
+    >
+      <Link href={`/coin/${coin.id}`} className="coin-name">
+        <span
+          className="coin-icon"
+          style={{ background: coin.color + "22", color: coin.color }}
+          aria-hidden="true"
+        >
+          {coin.symbol.slice(0, 1).toUpperCase()}
+        </span>
+        <span>
+          <strong>{coin.name}</strong>
+          <small>{coin.symbol.toUpperCase()}</small>
+        </span>
+      </Link>
+      <span className="price">{money.format(coin.current_price)}</span>
+      <span className={`change ${change < 0 ? "negative" : "positive"}`}>
+        {change < 0 ? "↘" : "↗"} {Math.abs(change).toFixed(2)}%
+      </span>
+      <span className="market-cap cap-column">
+        {compact.format(coin.market_cap)}
+      </span>
+      <button
+        className="save"
+        aria-label={`${saved ? "Remove" : "Add"} ${coin.name} ${saved ? "from" : "to"} watchlist`}
+        aria-pressed={saved}
+        onClick={() => onToggle(coin.id)}
+      >
+        {saved ? "★" : "☆"}
+      </button>
+    </li>
   );
 }
-
-export default Coins;

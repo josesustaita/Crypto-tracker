@@ -1,0 +1,11 @@
+name: crypto-tracker
+services:
+  crypto:
+    build: .
+    ports:
+      - "127.0.0.1:${CRYPTO_PORT:-8083}:3000"
+    environment:
+      CRYPTO_DATA_MODE: ${CRYPTO_DATA_MODE:-demo}
+      COINGECKO_API_KEY: ${COINGECKO_API_KEY:-}
+    init: true
+    restart: unless-stopped

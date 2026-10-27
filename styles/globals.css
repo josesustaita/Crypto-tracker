@@ -1,54 +1,565 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+* {
+  box-sizing: border-box;
 }
-
+body {
+  margin: 0;
+  background: #111a22;
+  color: #ecf0ef;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+}
 a {
   color: inherit;
   text-decoration: none;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Montserrat", sans-serif;
-  color: #fff;
+button,
+input,
+select {
+  font: inherit;
 }
-
-body {
-  background-color: #101012;
+button {
+  cursor: pointer;
 }
-
-.coin_app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
-  color: #fff;
+button,
+a,
+input,
+select {
+  outline-offset: 5px;
 }
-
-/* Layout CSS */
+button {
+  color: inherit;
+}
 .layout {
-  height: 100%;
-  width: 100%;
+  max-width: 1160px;
+  margin: auto;
+  padding: 28px 44px;
 }
-
-.header {
+.nav {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #2a3740;
+  padding-bottom: 24px;
 }
-.coin_logo {
-  height: 200px;
-  width: 200px;
+.brand {
+  font-size: 21px;
+  font-weight: 750;
+  letter-spacing: -0.7px;
 }
-.icon {
-  font-size: 8rem;
+.brand-mark {
+  font-size: 31px;
+  vertical-align: -2px;
+  color: #a8d9eb;
+  margin-right: 8px;
+}
+.brand-light {
+  font-weight: 400;
+  color: #94aebc;
+}
+.nav-note {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #8ba1ad;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 56px 0 34px;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #a8ccd9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.status-dot {
+  height: 6px;
+  width: 6px;
+  background: #a7e3c4;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #a7e3c416;
+  animation: pulse 3s infinite;
+}
+.hero h1 {
+  font-size: clamp(40px, 5.5vw, 66px);
+  font-weight: 550;
+  letter-spacing: -3px;
+  line-height: 1.08;
+  margin: 20px 0;
+}
+.hero h1 span {
+  color: #a9c4d0;
+}
+.hero-copy {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #91a6b3;
+}
+.pulse-art {
+  height: 270px;
+  width: 300px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin-right: 20px;
+}
+.gem {
+  font-size: 180px;
+  font-weight: 200;
+  color: #afdbed;
+  line-height: 1;
+  animation: float 6s ease-in-out infinite;
+  text-shadow: 0 10px 50px #82c4ec44;
+}
+.orbit {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  border: 1px solid #38515f;
+  transform: rotateX(65deg) rotate(-30deg);
+}
+.orbit-two {
+  width: 280px;
+  height: 280px;
+  transform: rotateX(65deg) rotate(30deg);
+  border-style: dashed;
+  border-color: #2d4453;
+}
+.orbit-dot {
+  width: 8px;
+  height: 8px;
+  background: #a5dfc2;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 85px;
+  right: 44px;
+  animation: pulse 3s infinite;
+}
+.art-label {
+  position: absolute;
+  bottom: 0;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: #809eae;
+}
+.data-notice {
+  font-size: 11px;
+  line-height: 1.7;
+  color: #92a9b7;
+  background: #1a2832;
+  border: 1px solid #2d414e;
+  border-radius: 8px;
+  padding: 11px 16px;
+  margin: 18px 0 28px;
+}
+.market-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding-bottom: 20px;
+}
+.tabs {
+  display: flex;
+  gap: 16px;
+  flex-shrink: 0;
+}
+.tabs button {
+  border: 0;
+  background: transparent;
+  padding: 10px 0;
+  border-bottom: 2px solid transparent;
+  color: #8da4b1;
+  font-size: 13px;
+}
+.tabs button[aria-pressed="true"] {
+  border-color: #acd8e7;
+  color: #e4f4f8;
+}
+.tabs button span {
+  font-size: 10px;
+  padding: 3px 5px;
+  border-radius: 4px;
+  background: #223440;
+  margin-left: 3px;
+}
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.search-label {
+  display: flex;
+  align-items: center;
+  background: #1a2832;
+  border: 1px solid #314451;
+  border-radius: 7px;
+  padding: 8px 12px;
+  gap: 8px;
+}
+.search-label > span {
+  font-size: 20px;
+  color: #8ca8b8;
+}
+.search-label input {
+  background: transparent;
+  color: #eef4f4;
+  border: 0;
+  min-width: 0;
+  width: 180px;
+  font-size: 12px;
+  padding: 3px;
+}
+.sort-label {
+  color: #8fa5b3;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.sort-label select {
+  color: #d5e3eb;
+  background: #1a2832;
+  border: 1px solid #314451;
+  border-radius: 7px;
+  padding: 10px 5px;
+  font-size: 11px;
+}
+.table-head,
+.coin-row {
+  display: grid;
+  grid-template-columns:
+    minmax(170px, 1.6fr) minmax(110px, 1fr) minmax(110px, 1fr)
+    minmax(100px, 1fr) 40px;
+  align-items: center;
+  gap: 10px;
+}
+.table-head {
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  color: #7e9aaa;
+  padding: 14px 12px;
+  background: #1a2730;
+  border-radius: 8px;
+}
+.coin-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.coin-row {
+  padding: 18px 12px;
+  border-bottom: 1px solid #2b3943;
+  animation: arrive 0.4s both;
+  animation-delay: var(--delay);
+  transition: background 0.2s;
+}
+.coin-row:hover {
+  background: #1a2730;
+}
+.coin-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.coin-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 600;
+}
+.coin-name strong {
+  display: block;
+  font-size: 13px;
+}
+.coin-name small {
+  display: block;
+  font-size: 10px;
+  color: #7f9aaa;
+  margin-top: 4px;
+}
+.price {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.change {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.positive {
+  color: #a0dfbe;
+}
+.negative {
+  color: #eea9a5;
+}
+.market-cap {
+  font-size: 12px;
+  color: #b1c6d0;
+}
+.save {
+  border: 0;
+  background: transparent;
+  font-size: 24px;
+  color: #9db2bf;
+  padding: 3px;
+}
+.save[aria-pressed="true"] {
+  color: #f0d18f;
+  animation: pop 0.25s;
+}
+.result-count {
+  font-size: 10px;
+  color: #7894a6;
+  padding: 12px;
+}
+.empty {
+  text-align: center;
+  padding: 55px 20px;
+}
+.empty > span {
+  font-size: 50px;
+  color: #9ac8dc;
+}
+.empty h2 {
+  font-size: 24px;
+  font-weight: 500;
+}
+.empty p {
+  font-size: 13px;
+  color: #97b0bf;
+  line-height: 1.7;
+}
+.button {
+  display: inline-block;
+  border: 1px solid #436273;
+  background: #203845;
+  border-radius: 7px;
+  color: #d5ebf3;
+  padding: 11px 18px;
+  font-size: 12px;
+  margin-top: 12px;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #2a3740;
+  margin-top: 40px;
+  padding: 23px 0;
+  font-size: 10px;
+  color: #809aab;
+}
+.sr-only {
+  position: absolute !important;
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.detail {
+  max-width: 650px;
+  margin: 35px auto;
+  text-align: center;
+}
+.detail .eyebrow {
+  justify-content: center;
+  margin-top: 40px;
+}
+.back {
+  display: block;
+  text-align: left;
+  font-size: 12px;
+  color: #98bdcf;
+}
+.detail-icon {
+  margin: 30px auto 18px;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 42px;
+  animation: float 6s infinite;
+}
+.ticker {
+  color: #8faebe;
+  letter-spacing: 2px;
+  font-size: 11px;
+}
+.detail h1 {
+  font-size: 40px;
+  letter-spacing: -1px;
+  font-weight: 550;
+  margin: 14px 0;
+}
+.detail-price {
+  font-size: 44px;
+  margin: 20px 0 10px;
+  letter-spacing: -1.5px;
+}
+.detail-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #304553;
+  border-radius: 12px;
+  padding: 25px 16px;
+  gap: 12px;
+  margin-top: 35px;
+}
+.detail-stats dt {
+  font-size: 11px;
+  color: #8ba5b5;
+}
+.detail-stats dd {
+  margin: 12px 0 0;
+  font-size: 16px;
+}
+.detail .data-notice {
+  background: transparent;
+  border: 0;
+}
+@keyframes float {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pop {
+  50% {
+    transform: scale(1.3);
+  }
+}
+@media (max-width: 850px) {
+  .layout {
+    padding: 24px;
+  }
+  .market-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .filters {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .search-label {
+    flex: 1;
+  }
+  .search-label input {
+    width: 100%;
+  }
+  .pulse-art {
+    width: 240px;
+    transform: scale(0.8);
+    margin-right: -20px;
+  }
+  .table-head,
+  .coin-row {
+    grid-template-columns:
+      minmax(130px, 1.4fr) minmax(90px, 1fr) minmax(85px, 1fr)
+      32px;
+    gap: 7px;
+  }
+  .cap-column {
+    display: none;
+  }
+  .hero h1 {
+    font-size: 48px;
+  }
+}
+@media (max-width: 560px) {
+  .layout {
+    padding: 20px 16px;
+  }
+  .nav-note {
+    display: none;
+  }
+  .hero {
+    padding-top: 30px;
+  }
+  .hero h1 {
+    font-size: 42px;
+    letter-spacing: -2px;
+  }
+  .pulse-art {
+    display: none;
+  }
+  .hero-copy {
+    font-size: 13px;
+  }
+  .coin-row,
+  .table-head {
+    padding-left: 4px;
+    padding-right: 4px;
+    grid-template-columns: minmax(100px, 1.3fr) minmax(70px, 1fr) minmax(
+        65px,
+        1fr
+      ) 24px;
+    gap: 4px;
+  }
+  .coin-name {
+    gap: 7px;
+  }
+  .coin-name strong {
+    font-size: 12px;
+  }
+  .coin-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  .price,
+  .change {
+    font-size: 11px;
+  }
+  .table-head {
+    font-size: 8px;
+    letter-spacing: 0.4px;
+  }
+  .footer {
+    gap: 16px;
+    line-height: 1.7;
+  }
+  .detail-stats {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .sort-label {
+    font-size: 0;
+  }
+  .sort-label select {
+    font-size: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
